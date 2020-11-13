@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>插件</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../index.js"></script>
+
+</head>
+
+<body>
+    <div id="video"></div>
+    <button id="ctl-1">关闭控制器</button>
+    <button id="ctl-2">打开控制器</button>
+    <script>
+        let zv = new ZVideo({
+            id: '#video',
+            // width: 500, //视频宽度
+            height: 500, //视频高度
+            playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+            autoplay: false, //如果true,浏览器准备好时开始回放。
+            muted: false, // 默认情况下将会消除任何音频。
+            loop: false, // 导致视频一结束就重新开始。
+            // poster: 'http://localhost:3000/dist/zvideo/public/1.png', //封面
+            sources: [
+                {
+                    title: '正点视频斯嘉丽 约翰逊主演《攻壳机动队》首款中文预告',
+                    url: 'http://localhost:8081/xamppwww/音频.mp3',
+                    type: 'audio'
+                },
+                {
+                    title: '凯撒强势归来《猩球崛起3：终极之战 》首款预告片',
+                    url: 'http://localhost:8081/xamppwww/%E8%A7%86%E9%A2%91-1.mp4',
+                    type: 'video'
+                },
+                {
+                    title: '正点视频斯嘉丽 约翰逊主演《攻壳机动队》首款中文预告',
+                    url: 'http://localhost:8081/xamppwww/%E8%A7%86%E9%A2%91-2.mp4',
+                    type: 'video'
+                }
+            ]
+        })
+
+        //事件监听： play, pause, prev, next, ctrl, list, voice, full, load
+        zv.addEventListener('error', (message, e) => {
+            console.log(message, e);
+        })
+
+        let el = document.getElementById('ctl-1');
+        let el1 = document.getElementById('ctl-2');
+        el.onclick = function () {
+            zv.closeControl()
+        }
+
+        el1.onclick = function () {
+            zv.openControl()
+        }
+
+    </script>
+</body>
+
+</html>
