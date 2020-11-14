@@ -348,7 +348,7 @@ class ZVideo {
                 vm.isPlay ? vm._pause() : vm._play();
             }
             if (e.keyCode === 39 || e.keyCode === 37) {
-                vm.$video.play();
+                vm.isPlay && vm.$video.play();
             }
         })
         window.addEventListener('keydown', e => {
