@@ -42,9 +42,9 @@ class ZVideo {
         vm.$el.classList.add('z-video');
         //创建视频元素 crossOrigin="*"
         vm.$el.innerHTML = `<div class="z-video-container">
-                                <video  id="z-video" 
+                                <video  id="z-video"
                                         rossOrigin="anonymous"
-                                        ${vm.autoplay && 'autoplay="true"'} 
+                                        ${vm.autoplay && 'autoplay="true"'}
                                         ${vm.muted && 'muted="true"'}
                                         ${vm.loop && 'loop="true"'}
                                         ${vm.poster && `poster="${vm.poster}"`}
@@ -66,7 +66,7 @@ class ZVideo {
                                     <i id="z-video-next" class="z-video-next iconfont icon-xiayiji"></i>
                                     <span class="z-video-time"><i id="z-video-time">${vm.timeStr}</i> / <i id="z-video-duration">${vm.durationStr}</i></span>
                                 </div>
-                                <div class="z-video-control-item"> 
+                                <div class="z-video-control-item">
                                     <i id="z-video-voice" class="z-video-voice iconfont ${vm.isVoice ? 'icon-laba' : 'icon-guanbishengyin'}"></i>
                                     <i id="z-video-full" class="z-video-full iconfont icon-quanping"></i>
                                     <i id="z-video-list" class="z-video-list iconfont icon-liebiao"></i>
@@ -338,7 +338,6 @@ class ZVideo {
         });
 
         window.addEventListener('resize', () => {
-            console.log('vm.isFull', vm.isFull);
             if (vm.isFull) {
                 vm._exitFull_fn();
             }

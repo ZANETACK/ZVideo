@@ -350,8 +350,8 @@ button{
     left: 50%;
     z-index: 9;
     transform: translate(-50%, -50%);
-    width: 165px;
-    height: 165px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background-color: black;
     border: 20px solid #1b1b1bdb;  
@@ -359,8 +359,8 @@ button{
 
 .z-video .z-video-audio{
     position: absolute;
-    top: 31%;
-    left: 31%;
+    top: 29%;
+    left: 29%;
     z-index: 99;
     color: #495f40;
     font-size: 4em;
@@ -375,9 +375,9 @@ button{
     background-color: transparent;
     border: 1px solid #141514;
 }
-.z-video-pan-circle.c-1{width: 120px;height: 120px; border-color:#162916;}
-.z-video-pan-circle.c-2{width: 120px;height: 120px; border-color:#162916;}
-.z-video-pan-circle.c-3{width: 120px;height: 120px; border-color:#162916;}
+.z-video-pan-circle.c-1{border-color:#162916;}
+.z-video-pan-circle.c-2{border-color:#162916;}
+.z-video-pan-circle.c-3{border-color:#162916;}
 .z-video-pan-circle.c-4{width: 180px;height: 180px}
 .z-video-pan-circle.c-5{width: 175px;height: 175px}
 .z-video-pan-circle.c-6{width: 169px;height: 169px}
@@ -396,10 +396,10 @@ button{
   animation: turn 4s linear infinite;
 }
 .z-video-pan.play .c-1{
- animation: cricle 3s ease-in-out infinite;
+ animation: cricle 2s ease-in-out infinite;
 }
 .z-video-pan.play .c-2{
-animation-delay: 2s; animation: cricle 5s ease-in-out infinite;
+animation-delay: 2s; animation: cricle 4s ease-in-out infinite;
 }
 .z-video-pan.play .c-3{
  animation-delay: 4s; animation: cricle 7s ease-in-out infinite;
@@ -415,8 +415,8 @@ animation-delay: 2s; animation: cricle 5s ease-in-out infinite;
 
 @keyframes cricle{
     0%{
-        width: 120px;
-        height: 120px;
+        width: 0px;
+        height: 0px;
         opacity: 0;
     }
     50%{
