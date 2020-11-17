@@ -156,7 +156,11 @@
         isError: false,
         isVoice: true,
         isFull: false,
-        messageTime: 3000
+        messageTime: 3000,
+        playbackRates: [0.7, 1.0, 1.5, 2.0],
+        //播放速度
+        rates: 1.0 //播放速度
+
       });
 
       if (!vm.id) {
@@ -175,7 +179,7 @@
         vm.$el = $(this.id);
         vm.$el.classList.add('z-video'); //创建视频元素 crossOrigin="*"
 
-        vm.$el.innerHTML = "<div class=\"z-video-container\">\n                                <video  id=\"z-video\"\n                                        rossOrigin=\"anonymous\"\n                                        ".concat(vm.autoplay && 'autoplay="true"', "\n                                        ").concat(vm.muted && 'muted="true"', "\n                                        ").concat(vm.loop && 'loop="true"', "\n                                        ").concat(vm.poster && "poster=\"".concat(vm.poster, "\""), "\n                                        style=\"width: ").concat(vm.width ? vm.width + 'px' : '100%', ";height: ").concat(vm.height ? vm.height + 'px' : 'auto', "\">\n                                    <source class=\"z-video-source\" type=\"video/mp4\"/>\n                                    <source class=\"z-video-source\" type=\"video/ogg\"/>\n                                    <source class=\"z-video-source\" type=\"video/webm\"/>\n                                </video>\n                            </div>\n                            <div class=\"z-video-no-select z-video-control\" id=\"z-video-control\">\n                                <div class=\"z-progress\">\n                                  <i class=\"z-progress-line\" id=\"z-progress-line\"></i>\n                                  <i class=\"z-progress-bar\" id=\"z-progress-bar\"></i>\n                                  <div id=\"z-progress\" style=\"position: absolute;width: 100%;z-index: 999;height: 100%;\"></div>\n                                </div>\n                                <div class=\"z-video-control-item\">\n                                    <i id=\"z-play-pause\" class=\"z-play-pause iconfont ").concat(vm.autoplay ? 'icon-shitinghui' : 'icon-bofang', "\"></i>\n                                    <i id=\"z-video-prev\" class=\"z-video-prev iconfont icon-shangyiji\"></i>\n                                    <i id=\"z-video-next\" class=\"z-video-next iconfont icon-xiayiji\"></i>\n                                    <span class=\"z-video-time\"><i id=\"z-video-time\">").concat(vm.timeStr, "</i> / <i id=\"z-video-duration\">").concat(vm.durationStr, "</i></span>\n                                </div>\n                                <div class=\"z-video-control-item\">\n                                    <i id=\"z-video-voice\" class=\"z-video-voice iconfont ").concat(vm.isVoice ? 'icon-laba' : 'icon-guanbishengyin', "\"></i>\n                                    <i id=\"z-video-full\" class=\"z-video-full iconfont icon-quanping\"></i>\n                                    <i id=\"z-video-list\" class=\"z-video-list iconfont icon-liebiao\"></i>\n                                </div>\n                            </div>\n                            <div class=\"z-video-list-content\" id=\"z-video-list-content\" style=\"width: 0\">\n                                <p class=\"z-video-play-title\"><i style=\"font-size: 14px;\" class=\"iconfont icon-dayu\"></i>\u64AD\u653E\u5217\u8868\uFF08<span id=\"z-video-play-title\">0</span>\uFF09</p>\n                                <div class=\"z-video-list-box scrollbar\" id=\"z-video-list-box\"></div>\n                            </div>\n                            <i class=\"z-video-error iconfont icon-wangluocuowu1\" id=\"z-video-error\">\u7F51\u8DEF\u9519\u8BEF</i>\n                            <i class=\"z-video-loading iconfont icon-jiazai\" id=\"z-video-loading\"></i>\n                            <span class=\"z-video-message\" id=\"z-video-message\"></span>\n                            <div class=\"z-video-pan\"  id=\"z-video-audio\">\n                                <i class=\"z-video-pan-circle c-1\"></i>\n                                <i class=\"z-video-pan-circle c-2\"></i>\n                                <i class=\"z-video-pan-circle c-3\"></i>\n                                <i class=\"z-video-pan-circle c-4\"></i>\n                                <i class=\"z-video-pan-circle c-5\"></i>\n                                <i class=\"z-video-pan-circle c-6\"></i>\n                                <i class=\"z-video-pan-circle c-7\"></i>\n                                <i class=\"z-video-pan-circle c-8\"></i>\n                                <i class=\"z-video-pan-circle c-9\"></i>\n                                <i class=\"z-video-pan-circle c-10\"></i>\n                                <i class=\"z-video-pan-circle c-11\"></i>\n                                <i class=\"z-video-pan-circle c-12\"></i>\n                                <i class=\"z-video-pan-circle c-13\"></i>\n                                <i class=\"z-video-pan-circle c-14\"></i>\n                                <i class=\"z-video-pan-circle c-15\"></i>\n                                <i class=\"z-video-audio iconfont icon-yinpin1\"></i>\n                            </div>\n                        "); //设置字体图标
+        vm.$el.innerHTML = "<div class=\"z-video-container\">\n                                <video  id=\"z-video\"\n                                        rossOrigin=\"anonymous\"\n                                        ".concat(vm.autoplay && 'autoplay="true"', "\n                                        ").concat(vm.muted && 'muted="true"', "\n                                        ").concat(vm.loop && 'loop="true"', "\n                                        ").concat(vm.poster && "poster=\"".concat(vm.poster, "\""), "\n                                        style=\"width: ").concat(vm.width ? vm.width + 'px' : '100%', ";height: ").concat(vm.height ? vm.height + 'px' : 'auto', "\">\n                                    <source class=\"z-video-source\" type=\"video/mp4\"/>\n                                    <source class=\"z-video-source\" type=\"video/ogg\"/>\n                                    <source class=\"z-video-source\" type=\"video/webm\"/>\n                                </video>\n                            </div>\n                            <div class=\"z-video-no-select z-video-control\" id=\"z-video-control\">\n                                <div class=\"z-progress\">\n                                  <i class=\"z-progress-line\" id=\"z-progress-line\"></i>\n                                  <i class=\"z-progress-bar\" id=\"z-progress-bar\"></i>\n                                  <div id=\"z-progress\" style=\"position: absolute;width: 100%;z-index: 999;height: 100%;\"></div>\n                                </div>\n                                <div class=\"z-video-control-item\">\n                                    <i id=\"z-play-pause\" class=\"z-play-pause iconfont ").concat(vm.autoplay ? 'icon-shitinghui' : 'icon-bofang', "\"></i>\n                                    <i id=\"z-video-prev\" class=\"z-video-prev iconfont icon-shangyiji\"></i>\n                                    <i id=\"z-video-next\" class=\"z-video-next iconfont icon-xiayiji\"></i>\n                                    <span class=\"z-video-time\"><i id=\"z-video-time\">").concat(vm.timeStr, "</i> / <i id=\"z-video-duration\">").concat(vm.durationStr, "</i></span>\n                                </div>\n                                <div class=\"z-video-control-item\">\n                                    <i id=\"z-video-voice\" class=\"z-video-voice iconfont ").concat(vm.isVoice ? 'icon-laba' : 'icon-guanbishengyin', "\"></i>\n                                    <i  class=\"z-video-rates iconfont\"><span id=\"z-video-rates\">").concat(vm.rates, "x</span><ul id=\"z-video-rates-list\" class=\"z-video-rates-list\"></ul></i>\n                                    <i id=\"z-video-full\" class=\"z-video-full iconfont icon-quanping\"></i>\n                                    <i id=\"z-video-list\" class=\"z-video-list iconfont icon-liebiao\"></i>\n                                </div>\n                            </div>\n                            <div class=\"z-video-list-content\" id=\"z-video-list-content\" style=\"width: 0\">\n                                <p class=\"z-video-play-title\"><i style=\"font-size: 14px;\" class=\"iconfont icon-dayu\"></i>\u64AD\u653E\u5217\u8868\uFF08<span id=\"z-video-play-title\">0</span>\uFF09</p>\n                                <div class=\"z-video-list-box scrollbar\" id=\"z-video-list-box\"></div>\n                            </div>\n                            <i class=\"z-video-error iconfont icon-wangluocuowu1\" id=\"z-video-error\">\u7F51\u8DEF\u9519\u8BEF</i>\n                            <i class=\"z-video-loading iconfont icon-jiazai\" id=\"z-video-loading\"></i>\n                            <span class=\"z-video-message\" id=\"z-video-message\"></span>\n                            <div class=\"z-video-pan\"  id=\"z-video-audio\">\n                                <i class=\"z-video-pan-circle c-1\"></i>\n                                <i class=\"z-video-pan-circle c-2\"></i>\n                                <i class=\"z-video-pan-circle c-3\"></i>\n                                <i class=\"z-video-pan-circle c-4\"></i>\n                                <i class=\"z-video-pan-circle c-5\"></i>\n                                <i class=\"z-video-pan-circle c-6\"></i>\n                                <i class=\"z-video-pan-circle c-7\"></i>\n                                <i class=\"z-video-pan-circle c-8\"></i>\n                                <i class=\"z-video-pan-circle c-9\"></i>\n                                <i class=\"z-video-pan-circle c-10\"></i>\n                                <i class=\"z-video-pan-circle c-11\"></i>\n                                <i class=\"z-video-pan-circle c-12\"></i>\n                                <i class=\"z-video-pan-circle c-13\"></i>\n                                <i class=\"z-video-pan-circle c-14\"></i>\n                                <i class=\"z-video-pan-circle c-15\"></i>\n                                <i class=\"z-video-audio iconfont icon-yinpin1\"></i>\n                            </div>\n                        "); //设置字体图标
 
         var link = document.createElement('link');
         link.setAttribute('rel', 'stylesheet');
@@ -215,6 +219,23 @@
         vm.$message = $('#z-video-message');
         vm.$error = $('#z-video-error');
         vm.$audio = $('#z-video-audio');
+        vm.$rates = $('#z-video-rates');
+        vm.$ratesList = $('#z-video-rates-list');
+
+        if (Array.isArray(vm.playbackRates)) {
+          vm.playbackRates.reverse();
+          var html = "";
+          vm.playbackRates.map(function (n) {
+            var v = n + '';
+
+            if (v.indexOf('.') < 0) {
+              v += '.0';
+            }
+
+            html += "<li class=\"z-video-rates-item\" data-value=\"".concat(n, "\">").concat(v, "x</li>");
+          });
+          vm.$ratesList.innerHTML = html;
+        }
 
         if (!Array.isArray(vm.sources)) {
           vm.sources = [];
@@ -474,7 +495,7 @@
           }
 
           if (e.keyCode === 39 || e.keyCode === 37) {
-            vm.$video.play();
+            vm.isPlay && vm.$video.play();
           }
         });
         window.addEventListener('keydown', function (e) {
@@ -488,6 +509,23 @@
             vm.$video.currentTime -= 5;
           }
         });
+        var ratesList = vm.$ratesList.querySelectorAll('.z-video-rates-item');
+
+        if (ratesList) {
+          for (var i in ratesList) {
+            var item = ratesList[i];
+
+            if (item && item.nodeType === 1) {
+              (function ($item, i) {
+                $item.onclick = function (e) {
+                  var val = e.target.dataset.value;
+                  vm.$rates.innerText = "".concat(val, "x");
+                  vm.$video.playbackRate = val;
+                };
+              })(item);
+            }
+          }
+        }
       }
     }, {
       key: "_message",

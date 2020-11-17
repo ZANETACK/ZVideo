@@ -26,7 +26,9 @@ class ZVideo {
             isError: false,
             isVoice: true,
             isFull: false,
-            messageTime: 3000
+            messageTime: 3000,
+            playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+            rates: 1.0, //播放速度
         });
         if (!vm.id) {
             console.warn('请设置id')
@@ -68,6 +70,7 @@ class ZVideo {
                                 </div>
                                 <div class="z-video-control-item">
                                     <i id="z-video-voice" class="z-video-voice iconfont ${vm.isVoice ? 'icon-laba' : 'icon-guanbishengyin'}"></i>
+                                    <i  class="z-video-rates iconfont"><span id="z-video-rates">${vm.rates}x</span><ul id="z-video-rates-list" class="z-video-rates-list"></ul></i>
                                     <i id="z-video-full" class="z-video-full iconfont icon-quanping"></i>
                                     <i id="z-video-list" class="z-video-list iconfont icon-liebiao"></i>
                                 </div>
@@ -140,6 +143,21 @@ class ZVideo {
         vm.$message = $('#z-video-message');
         vm.$error = $('#z-video-error');
         vm.$audio = $('#z-video-audio');
+        vm.$rates = $('#z-video-rates');
+        vm.$ratesList = $('#z-video-rates-list');
+
+        if (Array.isArray(vm.playbackRates)) {
+            vm.playbackRates.reverse();
+            let html = ``;
+            vm.playbackRates.map(n => {
+                let v = n + '';
+                if (v.indexOf('.') < 0) {
+                    v += '.0'
+                }
+                html += `<li class="z-video-rates-item" data-value="${n}">${v}x</li>`
+            })
+            vm.$ratesList.innerHTML = html;
+        }
 
 
         if (!Array.isArray(vm.sources)) {
@@ -362,6 +380,22 @@ class ZVideo {
             }
         })
 
+
+        let ratesList = vm.$ratesList.querySelectorAll('.z-video-rates-item');
+        if (ratesList) {
+            for (let i in ratesList) {
+                const item = ratesList[i];
+                if (item && item.nodeType === 1) {
+                    (($item, i) => {
+                        $item.onclick = function (e) {
+                            let val = e.target.dataset.value;
+                            vm.$rates.innerText = `${val}x`;
+                            vm.$video.playbackRate = val
+                        }
+                    })(item, i)
+                }
+            }
+        }
     }
     _message(options) {
         if (options.type === 'success') {
